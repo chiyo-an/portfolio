@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --neon-yellow: #E8FF00;
+  --pure-black: #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--pure-black);
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.text-neon {
+  color: var(--neon-yellow);
+}
+
+.bg-neon {
+  background-color: var(--neon-yellow);
+}
+
+.border-neon {
+  border-color: var(--neon-yellow);
+}
+
+.shadow-neon {
+  box-shadow: 0 0 20px rgba(232, 255, 0, 0.3);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px currentColor;
+}
+
+@keyframes neon-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(232, 255, 0, 0.8);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(232, 255, 0, 1);
+  }
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
