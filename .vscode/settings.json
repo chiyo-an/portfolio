@@ -1,0 +1,30 @@
+{
+  // Tailwind v4 지원 설정
+  "tailwindCSS.experimental.configFile": null,
+  "tailwindCSS.files.exclude": [],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass"
+  ],
+  
+  // CSS 검증 비활성화 (v4 문법 때문에)
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+  
+  // Tailwind v4의 @config, @theme, @utility 규칙 허용
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["className\\s*=\\s*[\"'`]([^\"'`]*)[\"'`]", "([a-zA-Z0-9\\-:]+)"]
+  ],
+  
+  // 자동완성 활성화
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  
+  // 오류 표시 최소화
+  "problems.decorations.enabled": false
+}
