@@ -1,8 +1,11 @@
 'use client';
 import { useState } from 'react';
+import { useCursor } from '@/hooks/useCursor';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useCursor();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -10,36 +13,52 @@ const Navigation = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-off-white">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-black/25 bg-transparent backdrop-blur-sm">
+        <div className="w-full h-px bg-black opacity-30" />
         <nav className="relative flex justify-between items-center py-4 h-16 px-8">
           <div className="flex items-center justify-between w-full">
-            <a href="#portfolio" className="font-display text-xl font-bold text-black hover:text-coral transition-colors tracking-normal">
+            <a 
+              href="#portfolio" 
+              className="font-display text-xl font-bold text-black hover:text-gray-700 transition-colors tracking-normal"
+            >
               Portfolio
             </a>
-            <a href="#about" className="font-display text-xl font-bold text-black hover:text-coral transition-colors tracking-normal">
+            <a 
+              href="#about" 
+              className="font-display text-xl font-bold text-black hover:text-gray-700 transition-colors tracking-normal"
+            >
               About
             </a>
-            <a href="#journey" className="font-display text-xl font-bold text-black hover:text-coral transition-colors tracking-normal">
+            <a 
+              href="#journey" 
+              className="font-display text-xl font-bold text-black hover:text-gray-700 transition-colors tracking-normal"
+            >
               Journey
             </a>
-            <a href="#tech" className="font-display text-xl font-bold text-black hover:text-coral transition-colors tracking-normal">
+            <a 
+              href="#tech" 
+              className="font-display text-xl font-bold text-black hover:text-gray-700 transition-colors tracking-normal"
+            >
               Tech
             </a>
-            <a href="#projects" className="font-display text-xl font-bold text-black hover:text-coral transition-colors tracking-normal">
+            <a 
+              href="#projects" 
+              className="font-display text-xl font-bold text-black hover:text-gray-700 transition-colors tracking-normal"
+            >
               Projects
             </a>
             
             <button 
               onClick={toggleMenu}
-              className="relative w-15 h-8 flex flex-col justify-center items-end group"
+              className="relative w-8 h-8 flex flex-col justify-center items-end group"
             >
-              <span className={`block w-15 h-0.5 bg-coral transition-all duration-300 ease-in-out ${
+              <span className={`block w-[60px] h-0.5 bg-black transition-all duration-300 ease-in-out ${
                 isMenuOpen 
                   ? 'rotate-45 translate-y-0' 
                   : 'group-hover:-translate-y-3 -translate-y-0.5'
               }`}></span>
               
-              <span className={`block w-15 h-0.5 bg-coral transition-all duration-300 ease-in-out ${
+              <span className={`block w-[60px] h-0.5 bg-black transition-all duration-300 ease-in-out ${
                 isMenuOpen 
                   ? '-rotate-45 translate-y-0' 
                   : 'group-hover:translate-y-3 translate-y-0.5'
@@ -61,7 +80,7 @@ const Navigation = () => {
             <a 
               href="#portfolio" 
               onClick={toggleMenu}
-              className="font-display font-light text-white hover:text-coral transition-colors duration-300"
+              className="font-display font-light text-white hover:text-red-500 transition-colors duration-300"
               style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
             >
               Portfolio
@@ -69,7 +88,7 @@ const Navigation = () => {
             <a 
               href="#about" 
               onClick={toggleMenu}
-              className="font-display font-light text-white hover:text-coral transition-colors duration-300"
+              className="font-display font-light text-white hover:text-red-500 transition-colors duration-300"
               style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
             >
               About
@@ -77,7 +96,7 @@ const Navigation = () => {
             <a 
               href="#journey" 
               onClick={toggleMenu}
-              className="font-display font-light text-white hover:text-coral transition-colors duration-300"
+              className="font-display font-light text-white hover:text-red-500 transition-colors duration-300"
               style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
             >
               Journey
@@ -85,7 +104,7 @@ const Navigation = () => {
             <a 
               href="#tech" 
               onClick={toggleMenu}
-              className="font-display font-light text-white hover:text-coral transition-colors duration-300"
+              className="font-display font-light text-white hover:text-red-500 transition-colors duration-300"
               style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
             >
               Tech
@@ -93,7 +112,7 @@ const Navigation = () => {
             <a 
               href="#projects" 
               onClick={toggleMenu}
-              className="font-display font-light text-white hover:text-coral transition-colors duration-300"
+              className="font-display font-light text-white hover:text-red-500 transition-colors duration-300"
               style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
             >
               Projects

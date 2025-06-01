@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { fontVariables } from '@/lib/fonts'
-import './globals.css'
+import '../styles/globals.css'
+import '../styles/cursor.css'
 
 export const metadata: Metadata = {
   title: 'Frontend Developer Who Speaks Design',

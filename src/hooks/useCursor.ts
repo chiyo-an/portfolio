@@ -1,57 +1,41 @@
 'use client';
 import { useEffect } from 'react';
 
-const CustomCursor = () => {
+export const useCursor = () => {
   useEffect(() => {
-    // 커서 요소 생성
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
     document.body.appendChild(cursor);
 
-    // 마우스 움직임 추적
     const moveCursor = (e: MouseEvent) => {
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
     };
 
-    // 호버 효과 추가
     const addHoverEffect = () => {
       cursor.classList.add('hover');
     };
-
-    // 호버 효과 제거
     const removeHoverEffect = () => {
       cursor.classList.remove('hover');
     };
 
-    // 이벤트 리스너 등록
     document.addEventListener('mousemove', moveCursor);
 
-    // 호버 가능한 요소들에 이벤트 추가
     const hoverElements = document.querySelectorAll('a, button, [role="button"]');
     hoverElements.forEach(el => {
       el.addEventListener('mouseenter', addHoverEffect);
       el.addEventListener('mouseleave', removeHoverEffect);
     });
 
-    // 클린업 함수
     return () => {
       document.removeEventListener('mousemove', moveCursor);
-      
-      // 호버 이벤트 제거
       hoverElements.forEach(el => {
         el.removeEventListener('mouseenter', addHoverEffect);
         el.removeEventListener('mouseleave', removeHoverEffect);
       });
-
-      // 커서 요소 제거
       if (cursor.parentNode) {
         cursor.parentNode.removeChild(cursor);
       }
     };
   }, []);
-
-  return null;
 };
-
-export default CustomCursor;

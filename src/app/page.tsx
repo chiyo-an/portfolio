@@ -1,5 +1,8 @@
 import Navigation from '@/components/layout/Navigation';
 import Hero from '@/components/sections/Hero';
+import Journey from '@/components/sections/Journey';
+import Projects from '@/components/sections/Projects';
+import ContactSection from '@/components/sections/Contact';
 import CustomCursor from '@/components/ui/CustomCursor';
 
 export default function Home() {
@@ -9,11 +12,9 @@ export default function Home() {
       <Navigation />
       <main className="relative z-10">
         <Hero />
-        {/* 추후 다른 섹션들이 여기에 추가됩니다 */}
-        {/* <About /> */}
-        {/* <Skills /> */}
-        {/* <Projects /> */}
-        {/* <Contact /> */}
+        <Journey />
+        <Projects />
+        <ContactSection />
       </main>
     </div>
   );
