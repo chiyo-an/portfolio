@@ -1,11 +1,19 @@
 'use client';
 import { useState } from 'react';
-import { useCursor } from '@/hooks/useCursor';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useCursor();
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    setIsMenuOpen(false);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,54 +23,76 @@ const Navigation = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-black/25 bg-transparent backdrop-blur-sm">
         <div className="w-full h-px bg-black opacity-30" />
-        <nav className="relative flex justify-between items-center py-4 h-16 px-8">
+        <nav className="relative flex justify-between items-center py-3 px-8">
           <div className="flex items-center justify-between w-full">
-            <a 
-              href="#portfolio" 
-              className="font-display text-xl font-bold text-black hover:text-gray-700 transition-colors tracking-normal"
+            <button 
+              onClick={() => scrollToSection('hero')}
+              className="font-english text-sm font-bold text-black hover:text-gray-700 transition-colors tracking-normal uppercase"
             >
-              Portfolio
-            </a>
-            <a 
-              href="#about" 
-              className="font-display text-xl font-bold text-black hover:text-gray-700 transition-colors tracking-normal"
+              Portfolio ✦
+            </button>
+            <button 
+              onClick={() => scrollToSection('journey')}
+              className="font-english text-sm font-bold text-black hover:text-gray-700 transition-colors tracking-normal hidden md:block uppercase"
             >
               About
-            </a>
-            <a 
-              href="#journey" 
-              className="font-display text-xl font-bold text-black hover:text-gray-700 transition-colors tracking-normal"
+            </button>
+            <button 
+              onClick={() => scrollToSection('journey')}
+              className="font-english text-sm font-bold text-black hover:text-gray-700 transition-colors tracking-normal hidden md:block uppercase"
             >
               Journey
-            </a>
-            <a 
-              href="#tech" 
-              className="font-display text-xl font-bold text-black hover:text-gray-700 transition-colors tracking-normal"
+            </button>
+            <button 
+              onClick={() => scrollToSection('projects')}
+              className="font-english text-sm font-bold text-black hover:text-gray-700 transition-colors tracking-normal hidden md:block uppercase"
             >
-              Tech
-            </a>
-            <a 
-              href="#projects" 
-              className="font-display text-xl font-bold text-black hover:text-gray-700 transition-colors tracking-normal"
+              ( Projects )
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="font-english text-sm font-bold text-black hover:text-gray-700 transition-colors tracking-normal hidden md:block uppercase"
             >
-              Projects
-            </a>
+              Contact
+            </button>
             
             <button 
               onClick={toggleMenu}
-              className="relative w-8 h-8 flex flex-col justify-center items-end group"
+              className="relative w-8 h-8 flex flex-col justify-center items-center group mr-2"
+              style={{ 
+                transform: 'translateZ(0)',
+                letterSpacing: '0',
+                backfaceVisibility: 'hidden',
+                WebkitFontSmoothing: 'antialiased'
+              }}
             >
-              <span className={`block w-[60px] h-0.5 bg-black transition-all duration-300 ease-in-out ${
-                isMenuOpen 
-                  ? 'rotate-45 translate-y-0' 
-                  : 'group-hover:-translate-y-3 -translate-y-0.5'
-              }`}></span>
+              <span 
+                className={`block w-[60px] bg-black transition-all duration-300 ease-in-out ${
+                  isMenuOpen 
+                    ? 'rotate-45 translate-y-0' 
+                    : 'group-hover:-translate-y-1'
+                }`}
+                style={{ 
+                  height: '2px',
+                  transform: isMenuOpen ? 'rotate(45deg) translateY(0px)' : 'translateY(-2px)',
+                  transformOrigin: 'center',
+                  backfaceVisibility: 'hidden'
+                }}
+              ></span>
               
-              <span className={`block w-[60px] h-0.5 bg-black transition-all duration-300 ease-in-out ${
-                isMenuOpen 
-                  ? '-rotate-45 translate-y-0' 
-                  : 'group-hover:translate-y-3 translate-y-0.5'
-              }`}></span>
+              <span 
+                className={`block w-[60px] bg-black transition-all duration-300 ease-in-out ${
+                  isMenuOpen 
+                    ? '-rotate-45 translate-y-0' 
+                    : 'group-hover:translate-y-1'
+                }`}
+                style={{ 
+                  height: '2px',
+                  transform: isMenuOpen ? 'rotate(-45deg) translateY(0px)' : 'translateY(2px)',
+                  transformOrigin: 'center',
+                  backfaceVisibility: 'hidden'
+                }}
+              ></span>
             </button>
           </div>
         </nav>
@@ -77,46 +107,41 @@ const Navigation = () => {
           </div>
 
           <nav className="flex-1 flex flex-col justify-center items-end pr-16 space-y-4">
-            <a 
-              href="#portfolio" 
-              onClick={toggleMenu}
-              className="font-display font-light text-white hover:text-red-500 transition-colors duration-300"
+            <button 
+              onClick={() => scrollToSection('hero')}
+              className="font-english font-light text-white hover:text-red-500 transition-colors duration-300 uppercase"
               style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
             >
               Portfolio
-            </a>
-            <a 
-              href="#about" 
-              onClick={toggleMenu}
-              className="font-display font-light text-white hover:text-red-500 transition-colors duration-300"
+            </button>
+            <button 
+              onClick={() => scrollToSection('journey')}
+              className="font-english font-light text-white hover:text-red-500 transition-colors duration-300 uppercase"
               style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
             >
               About
-            </a>
-            <a 
-              href="#journey" 
-              onClick={toggleMenu}
-              className="font-display font-light text-white hover:text-red-500 transition-colors duration-300"
+            </button>
+            <button 
+              onClick={() => scrollToSection('journey')}
+              className="font-english font-light text-white hover:text-red-500 transition-colors duration-300 uppercase"
               style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
             >
               Journey
-            </a>
-            <a 
-              href="#tech" 
-              onClick={toggleMenu}
-              className="font-display font-light text-white hover:text-red-500 transition-colors duration-300"
-              style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
-            >
-              Tech
-            </a>
-            <a 
-              href="#projects" 
-              onClick={toggleMenu}
-              className="font-display font-light text-white hover:text-red-500 transition-colors duration-300"
+            </button>
+            <button 
+              onClick={() => scrollToSection('projects')}
+              className="font-english font-light text-white hover:text-red-500 transition-colors duration-300 uppercase"
               style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
             >
               Projects
-            </a>
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="font-english font-light text-white hover:text-red-500 transition-colors duration-300 uppercase"
+              style={{ fontSize: 'clamp(4rem, 12vw, 8rem)', lineHeight: '0.9' }}
+            >
+              Contact
+            </button>
           </nav>
         </div>
       </div>

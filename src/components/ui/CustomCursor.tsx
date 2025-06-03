@@ -1,57 +1,56 @@
 'use client';
 import { useEffect } from 'react';
 
-const CustomCursor = () => {
+export default function CustomCursor() {
   useEffect(() => {
-    // 커서 요소 생성
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
     document.body.appendChild(cursor);
 
-    // 마우스 움직임 추적
+    const cursorText = document.createElement('span');
+    cursorText.className = 'custom-cursor-text';
+    cursorText.textContent = 'CLICK';
+    cursor.appendChild(cursorText);
+
     const moveCursor = (e: MouseEvent) => {
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
     };
 
-    // 호버 효과 추가
-    const addHoverEffect = () => {
+    const addHover = (e: Event) => {
+      const target = e.target as HTMLElement;
       cursor.classList.add('hover');
+      
+      // 버튼에만 텍스트 표시 (링크는 제외)
+      if (target.tagName === 'BUTTON' || 
+          (target.tagName === 'INPUT' && (target as HTMLInputElement).type === 'submit')) {
+        cursor.classList.add('show-text');
+      }
     };
 
-    // 호버 효과 제거
-    const removeHoverEffect = () => {
+    const removeHover = () => {
       cursor.classList.remove('hover');
+      cursor.classList.remove('show-text');
     };
 
-    // 이벤트 리스너 등록
     document.addEventListener('mousemove', moveCursor);
 
-    // 호버 가능한 요소들에 이벤트 추가
+    // 모든 interactive 요소에 hover 효과 적용
     const hoverElements = document.querySelectorAll('a, button, [role="button"]');
-    hoverElements.forEach(el => {
-      el.addEventListener('mouseenter', addHoverEffect);
-      el.addEventListener('mouseleave', removeHoverEffect);
+    hoverElements.forEach(element => {
+      element.addEventListener('mouseenter', addHover);
+      element.addEventListener('mouseleave', removeHover);
     });
 
-    // 클린업 함수
     return () => {
       document.removeEventListener('mousemove', moveCursor);
-      
-      // 호버 이벤트 제거
-      hoverElements.forEach(el => {
-        el.removeEventListener('mouseenter', addHoverEffect);
-        el.removeEventListener('mouseleave', removeHoverEffect);
+      hoverElements.forEach(element => {
+        element.removeEventListener('mouseenter', addHover);
+        element.removeEventListener('mouseleave', removeHover);
       });
-
-      // 커서 요소 제거
-      if (cursor.parentNode) {
-        cursor.parentNode.removeChild(cursor);
-      }
+      cursor.remove();
     };
   }, []);
 
   return null;
-};
-
-export default CustomCursor;
+}

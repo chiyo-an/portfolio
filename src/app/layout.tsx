@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { fontVariables } from '@/lib/fonts'
-import '../styles/globals.css'
-import '../styles/cursor.css'
+import '@/styles/globals.css'
+import CustomCursor from '@/components/ui/CustomCursor'
+import ClientLayout from '@/components/layout/ClientLayout'
 
 export const metadata: Metadata = {
   title: 'Frontend Developer Who Speaks Design',
@@ -9,6 +10,11 @@ export const metadata: Metadata = {
   keywords: ['frontend', 'developer', 'publisher', 'react', 'nextjs', 'portfolio'],
   authors: [{ name: 'AN JEONG EUN' }],
   viewport: 'width=device-width, initial-scale=1',
+  icons: {
+    icon: '/images/favicon.png',
+    shortcut: '/images/favicon.png',
+    apple: '/images/favicon.png',
+  },
 }
 
 export default function RootLayout({
@@ -22,18 +28,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link 
-          href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;400;500;600;700;800&display=swap" 
+          href="https://fonts.googleapis.com/css2?family=Boldonse:wght@400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap" 
           rel="stylesheet" 
-        />
-        <link 
-          rel="stylesheet" 
-          as="style" 
-          crossOrigin=""
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" 
         />
       </head>
       <body className="antialiased font-korean">
-        {children}
+        <CustomCursor />
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   )
