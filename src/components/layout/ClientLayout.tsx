@@ -22,22 +22,18 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
-    // 로딩 화면이 사라진 후 컨텐츠 표시
-    setTimeout(() => {
+    // 로딩 화면이 사라진 직후 즉시 콘텐츠 표시하여 부드러운 전환
+    requestAnimationFrame(() => {
       setShowContent(true);
-      // 컨텐츠가 나타난 후 애니메이션 시작 허용
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         setIsLoadingComplete(true);
-      }, 100);
-    }, 100);
+      });
+    });
   };
 
-  // 페이지 리소스가 로드되었는지 확인
   useEffect(() => {
-    // 최소 로딩 시간 보장 (2초)
     const minLoadingTime = setTimeout(() => {
       if (document.readyState === 'complete') {
-        // 이미 로드 완료된 경우 바로 처리
         return;
       }
     }, 2000);
@@ -62,9 +58,14 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     <LoadingContext.Provider value={{ isLoadingComplete }}>
       {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
       <div 
-        className={`transition-opacity duration-500 ${
+        className={`transition-opacity duration-400 ${
           showContent ? 'opacity-100' : 'opacity-0'
         }`}
+        style={{
+          willChange: showContent ? 'auto' : 'opacity',
+          transform: 'translateZ(0)', // 하드웨어 가속
+          backfaceVisibility: 'hidden'
+        }}
       >
         {children}
       </div>

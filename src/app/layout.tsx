@@ -5,7 +5,7 @@ import CustomCursor from '@/components/ui/CustomCursor'
 import ClientLayout from '@/components/layout/ClientLayout'
 
 export const metadata: Metadata = {
-  title: 'Frontend Developer Who Speaks Design',
+  title: 'JEONG EUN ✦ Frontend Developer',
   description: '퍼블리싱 경험과 개발 역량을 결합한 완성형 프론트엔드 개발자',
   keywords: ['frontend', 'developer', 'publisher', 'react', 'nextjs', 'portfolio'],
   authors: [{ name: 'AN JEONG EUN' }],

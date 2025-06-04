@@ -47,7 +47,7 @@ const Navigation = () => {
               onClick={() => scrollToSection('projects')}
               className="font-english text-sm font-bold text-black hover:text-gray-700 transition-colors tracking-normal hidden md:block uppercase"
             >
-              ( Projects )
+              [ Projects ]
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
